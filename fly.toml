@@ -1,0 +1,41 @@
+# fly.toml file generated for page-to-pdf on 2023-02-18T00:18:12+11:00
+
+app = "page-to-pdf"
+kill_signal = "SIGINT"
+kill_timeout = 5
+processes = []
+
+[env]
+
+[experimental]
+  auto_rollback = true
+
+[[services]]
+  internal_port = 3000
+  processes = ["app"]
+  protocol = "tcp"
+  script_checks = []
+  [[services.http_checks]]
+    interval = 10000
+    method = "get"
+    path = "/"
+
+  [services.concurrency]
+    hard_limit = 25
+    soft_limit = 20
+    type = "connections"
+
+  [[services.ports]]
+    force_https = true
+    handlers = ["http"]
+    port = 80
+
+  [[services.ports]]
+    handlers = ["tls", "http"]
+    port = 443
+
+  [[services.tcp_checks]]
+    grace_period = "1s"
+    interval = "15s"
+    restart_limit = 0
+    timeout = "2s"

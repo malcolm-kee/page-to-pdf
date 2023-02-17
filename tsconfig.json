@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "moduleResolution": "node16",
+    "module": "CommonJS",
+    "target": "ES2020",
+    "strict": true,
+    "strictNullChecks": true,
+    "forceConsistentCasingInFileNames": true,
+    "outDir": "dist",
+    "esModuleInterop": true
+  },
+  "include": ["src"]
+}
